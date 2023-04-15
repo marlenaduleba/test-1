@@ -1,11 +1,19 @@
-export const TrendingList = () => {
+import { List, PosterTitle } from "./TrendingList.styled";
+
+
+
+export const TrendingList = ({movies}) => {
+    const baseURL = 'https://image.tmdb.org/t/p/w300';
     return (
-        <div>
-            <ul>
-                <li>trending1</li>
-                <li>trending2</li>
-                <li>trending3</li>
-            </ul>
-        </div>
+        <List>
+            {movies.map((movie) => (
+               
+                    <li key={movie.id}>
+                        <img src={`${baseURL}${movie.poster_path}`} alt="" />
+                        <PosterTitle>{movie.title}</PosterTitle>
+                    </li>
+                
+            ))}
+        </List>
     )
 }
