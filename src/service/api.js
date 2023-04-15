@@ -10,3 +10,5 @@ const instance = axios.create({
 })
 
 export const fetchTrending = () => instance.get(`/trending/movie/day`);
+
+export const fetchByID = (id) => instance.get(`/movie/${id}`);

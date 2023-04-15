@@ -1,4 +1,5 @@
-import { List, PosterTitle } from "./TrendingList.styled";
+import { List, PosterTitle, StyledLink } from "./TrendingList.styled";
+
 
 
 
@@ -9,8 +10,10 @@ export const TrendingList = ({movies}) => {
             {movies.map((movie) => (
                
                     <li key={movie.id}>
-                        <img src={`${baseURL}${movie.poster_path}`} alt="" />
-                        <PosterTitle>{movie.title}</PosterTitle>
+                        <StyledLink to={`/movies/${movie.id}`}>
+                            <img src={`${baseURL}${movie.poster_path}`} alt="" />
+                            <PosterTitle>{movie.title}</PosterTitle>
+                        </StyledLink>
                     </li>
                 
             ))}
