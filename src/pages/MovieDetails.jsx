@@ -1,18 +1,18 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { fetchByID } from 'service/api';
 import { useEffect, useState } from 'react';
-import { Container } from './MovieDetails.styled';
+import { Container, List, Item, Subtitle, StyledLink, LinkList } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
   const { id } = useParams();
 
-  const [movie, setMovie] = useState({});
+  const [film, setFilm] = useState({});
 
   useEffect(() => {
     try {
       fetchByID(id).then(({ data }) => {
-        setMovie(data);
+        setFilm(data);
         console.log(data);
       });
     } catch (error) {
@@ -23,22 +23,33 @@ const MovieDetails = () => {
   return (
     <main>
         <Container>
-          <img src={`${baseURL}${movie.poster_path}`} alt="" />
+          <img src={`${baseURL}${film.poster_path}`} alt={film.title} />
           <div>
-            <h2>{movie.title}</h2>
-            <p>User score: {movie.vote_average}</p>
+            <h2>{film.title}</h2>
+            <p>User score: {film.vote_average}</p>
             <h3>Overview</h3>
-            <p>{movie.overview}</p>
+            <p>{film.overview}</p>
             <h3>Genres</h3>
-            <ul>
-                {movie.genres.length > 0
-                ? movie.genres.map(genre =>
-                    <li>{genre.name}</li>
+           
+            {/* <List>
+                {film.genres.length > 0
+                ? film.genres.map(genre =>
+                    <Item key={genre.id}>{genre.name}</Item>
                 )
             : 'No info'}
-            </ul>
+            </List> */}
           </div>
         </Container>
+        <Subtitle>Additional information</Subtitle>
+        <LinkList>
+          <li>
+            <StyledLink to="cast">Cast</StyledLink>
+          </li>
+          <li>
+            <StyledLink to="reviews">Reviews</StyledLink>
+          </li>
+        </LinkList>
+        <Outlet/>
     </main>
   );
 };
