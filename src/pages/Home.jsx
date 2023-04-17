@@ -1,5 +1,5 @@
 
-import { TrendingList } from "components/TrendingList";
+import { MovieList } from "components/MovieList";
 import { Title } from "./Home.styled";
 import { fetchTrending } from "service/api";
 import { useState } from "react";
@@ -22,7 +22,7 @@ useEffect(() => {
     return (
         <main>
 <Title>Trending today</Title>
-<TrendingList movies={movies} />
+<MovieList movies={movies} />
         </main>
     )
 

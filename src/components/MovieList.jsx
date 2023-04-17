@@ -1,9 +1,9 @@
-import { List, PosterTitle, StyledLink } from "./TrendingList.styled";
+import { List, PosterTitle, StyledLink } from "./MovieList.styled";
 
 
 
 
-export const TrendingList = ({movies}) => {
+export const MovieList = ({movies}) => {
     const baseURL = 'https://image.tmdb.org/t/p/w300';
     return (
         <List>

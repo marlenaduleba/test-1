@@ -9,6 +9,8 @@ const instance = axios.create({
 
 export const fetchTrending = () => instance.get(`/trending/movie/day`);
 
+export const fetchByName = async (query) => instance.get(`/search/movie`, {params: { query } });
+
 export const fetchByID = async id => instance.get(`/movie/${id}`);
 
 export const fetchCast = async id => instance.get(`/movie/${id}/credits`);
