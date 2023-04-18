@@ -36,6 +36,8 @@ export const LinkList = styled.ul`
 display: flex;
 justify-content: center;
 gap: 15px;
+margin-bottom: 30px;
+
 
 .active {
     background-color: orange;

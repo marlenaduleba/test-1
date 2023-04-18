@@ -1,11 +1,14 @@
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { fetchByID } from 'service/api';
 import { useEffect, useState } from 'react';
 import { Container, List, Item, Subtitle, StyledLink, LinkList } from './MovieDetails.styled';
+import { BackLink } from 'components/BackLink';
 
 const MovieDetails = () => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
   const { id } = useParams();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? "products";
 
   const [film, setFilm] = useState({});
 
@@ -22,7 +25,9 @@ const MovieDetails = () => {
 
   return (
     <main>
+      <BackLink  to={backLinkHref}>Go back</BackLink>
         <Container>
+          
           <img src={`${baseURL}${film.poster_path}`} alt={film.title} />
           <div>
             <h2>{film.title}</h2>

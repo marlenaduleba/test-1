@@ -1,6 +1,7 @@
 import { fetchCast } from 'service/api';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { CastWrapper, CastItem, CastList } from './Cast.styled';
 
 const Cast = () => {
   const baseURL = 'https://image.tmdb.org/t/p/w300';
@@ -18,17 +19,17 @@ const Cast = () => {
   }, [id]);
 
   return (
-    <div>
-      <ul>
+    <CastWrapper>
+      <CastList>
         {filmCast.map(info => (
-          <li key={info.id}>
+          <CastItem key={info.id}>
             <img src={`${baseURL}${info.profile_path}`} alt="" />
-            <p>{info.name}</p>
+            <h4>{info.name}</h4>
             <p>{info.character}</p>
-          </li>
+          </CastItem>
         ))}
-      </ul>
-    </div>
+      </CastList>
+    </CastWrapper>
   );
 };
 
